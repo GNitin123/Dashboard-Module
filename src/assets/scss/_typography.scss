@@ -1,0 +1,23 @@
+body,
+html {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  font-family: $work-sans;
+
+  color: $grey--seven;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  line-height: 1;
+
+  margin-bottom: 0;
+
+  color: $black;
+}

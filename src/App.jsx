@@ -1,3 +1,5 @@
+import '../src/assets/scss/styles.scss'
+
 const App = () => {
   return <div>APP</div>
 }
