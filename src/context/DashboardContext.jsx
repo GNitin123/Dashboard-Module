@@ -4,6 +4,7 @@ const DashboardContext = createContext()
 
 export const DashboardProvider = ({ children }) => {
   const [user] = useState({
+    id: 1,
     name: 'John Wick',
     role: 'Developer',
   })
