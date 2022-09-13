@@ -1,0 +1,50 @@
+.component-dashboard {
+  background: $grey--ten;
+  height: 100%;
+  padding-bottom: 2rem;
+  &__page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $grey--three;
+    padding: 2rem;
+    &__title-wrapper {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      @media screen and (max-width: 959px) {
+        margin-bottom: 1rem;
+      }
+    }
+    &__icon {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      background: $white;
+      @media screen and (max-width: 959px) {
+        display: none;
+      }
+    }
+    &__title {
+      h4 {
+        font-weight: 400;
+        color: $black--three;
+      }
+      p {
+        color: $grey;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    &__star-btn {
+      color: $white !important;
+      background: $black !important;
+      margin-right: 1rem;
+    }
+    @media screen and (max-width: 959px) {
+      display: block;
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+}
