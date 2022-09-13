@@ -26,6 +26,7 @@
       }
     }
     &__title {
+      text-transform: capitalize;
       h4 {
         font-weight: 400;
         color: $black--three;
@@ -45,6 +46,30 @@
       display: block;
       text-align: center;
       padding: 1rem;
+    }
+  }
+  &__main-section {
+    padding: 2rem 2rem 0;
+    display: flex;
+    gap: 2rem;
+    & > div {
+      flex: 1;
+      height: calc(100vh - 350px);
+      overflow: scroll;
+      @media screen and (max-width: 959px) {
+        margin: 2rem 0;
+      }
+    }
+    &__task-btn-wrapper {
+      button:first-child {
+        color: $blue--one !important;
+        margin-right: 1rem;
+      }
+      text-align: right;
+    }
+    @media screen and (max-width: 959px) {
+      display: block;
+      padding: 0 1rem;
     }
   }
 }

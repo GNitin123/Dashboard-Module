@@ -1,0 +1,23 @@
+.component-card {
+  position: relative;
+  background: $white;
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid $grey--eight;
+    p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    border-top: 1px solid $grey--eight;
+  }
+}
