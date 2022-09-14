@@ -31,7 +31,10 @@ const Dashboard = () => {
     items && dispatch({ type: 'REORDER_TASK', payload: items })
   }
 
-  const handleSave = () => taskList.map((task, index) => console.log(`Task ${index + 1}:`, task))
+  const handleSave = () => {
+    taskList.map((task, index) => console.log(`Task ${index + 1}:`, task))
+    setIsTaskListOrderChanged(false)
+  }
 
   const messageChange = event => setNewMessage(event.target.value)
 
