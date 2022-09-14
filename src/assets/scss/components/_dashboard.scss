@@ -73,10 +73,6 @@
       align-items: center;
       padding: 1rem 1.5rem;
       border-bottom: 1px solid $grey--nine;
-      transition: scale 0.7s ease-in-out;
-      &:hover {
-        scale: 1.04;
-      }
     }
     &__task-desc {
       width: 100%;

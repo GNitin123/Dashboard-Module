@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import defaultLayout from '../layout/defaultLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlane, faPlus, faStar, faDatabase, faPrint } from '@fortawesome/free-solid-svg-icons'
@@ -10,10 +10,12 @@ import ChatBox from './ChatBox'
 
 const Dashboard = () => {
   const {
-    state: { taskList },
+    state: { taskList, user },
     dispatch,
   } = useContext(DashboardContext)
   const [isTaskListOrderChanged, setIsTaskListOrderChanged] = useState(false)
+  const [newMessage, setNewMessage] = useState('')
+  const chatBoxWrapper = useRef()
 
   const onDragEnd = result => {
     const { source, destination } = result
@@ -30,6 +32,29 @@ const Dashboard = () => {
   }
 
   const handleSave = () => taskList.map((task, index) => console.log(`Task ${index + 1}:`, task))
+
+  const messageChange = event => setNewMessage(event.target.value)
+
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') sendMessage()
+  }
+
+  const sendMessage = () => {
+    dispatch({
+      type: 'ADD_MESSAGE',
+      payload: {
+        userId: user?.id,
+        message: newMessage,
+        createdAt: `${new Date().toLocaleTimeString()} | Today`,
+        profilePic:
+          'https://media.istockphoto.com/photos/middle-aged-man-smiling-at-the-camera-picture-id1323163855?k=20&m=1323163855&s=612x612&w=0&h=toV5tWlpSzYEdRxeTKUgenLbxtX2qeKyKfTF8IIKv60=',
+      },
+    })
+    setTimeout(() => {
+      chatBoxWrapper.current && chatBoxWrapper.current()
+    })
+    setNewMessage('')
+  }
 
   const TaskListFooter = (
     <div className="component-dashboard__main-section__task-btn-wrapper">
@@ -48,8 +73,13 @@ const Dashboard = () => {
         placeholder="write here and hit enter to send.."
         aria-label="write here and hit enter to send.."
         aria-describedby="basic-addon2"
+        onChange={messageChange}
+        value={newMessage}
+        onKeyDown={handleKeyPress}
       />
-      <Button variant="success">Send</Button>
+      <Button variant="success" onClick={sendMessage}>
+        Send
+      </Button>
     </InputGroup>
   )
 
@@ -130,7 +160,7 @@ const Dashboard = () => {
           </Card>
         </DragDropContext>
         <Card title="Chat Box" icon={faPrint} color="#e41638" footer={chatBoxFooter}>
-          <ChatBox />
+          <ChatBox chatBoxWrapper={chatBoxWrapper} />
         </Card>
       </div>
     </div>
