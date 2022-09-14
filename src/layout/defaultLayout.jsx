@@ -4,7 +4,9 @@ import { faReact } from '@fortawesome/free-brands-svg-icons'
 import DashboardContext from '../context/DashboardContext'
 
 const defaultLayout = WrapperComponent => () => {
-  const { user } = useContext(DashboardContext)
+  const {
+    state: { user },
+  } = useContext(DashboardContext)
   return (
     <div className="layout">
       <header className="layout__header">

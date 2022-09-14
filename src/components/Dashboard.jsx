@@ -6,9 +6,13 @@ import { Button, Form, InputGroup, Badge, Image } from 'react-bootstrap'
 import Card from './Card'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import DashboardContext from '../context/DashboardContext'
+import ChatBox from './ChatBox'
 
 const Dashboard = () => {
-  const { taskList, setTaskList } = useContext(DashboardContext)
+  const {
+    state: { taskList },
+    dispatch,
+  } = useContext(DashboardContext)
   const [isTaskListOrderChanged, setIsTaskListOrderChanged] = useState(false)
 
   const onDragEnd = result => {
@@ -22,7 +26,7 @@ const Dashboard = () => {
     const items = Array.from(taskList)
     const [reorderItem] = items.splice(source.index, 1)
     items.splice(destination.index, 0, reorderItem)
-    items && setTaskList(items)
+    items && dispatch({ type: 'REORDER_TASK', payload: items })
   }
 
   const handleSave = () => taskList.map((task, index) => console.log(`Task ${index + 1}:`, task))
@@ -125,7 +129,9 @@ const Dashboard = () => {
             </Droppable>
           </Card>
         </DragDropContext>
-        <Card title="Chat Box" icon={faPrint} color="#e41638" footer={chatBoxFooter} />
+        <Card title="Chat Box" icon={faPrint} color="#e41638" footer={chatBoxFooter}>
+          <ChatBox />
+        </Card>
       </div>
     </div>
   )
