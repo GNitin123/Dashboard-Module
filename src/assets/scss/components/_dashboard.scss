@@ -55,6 +55,7 @@
     & > div {
       flex: 1;
       height: calc(100vh - 350px);
+      min-height: 400px;
       @media screen and (max-width: 959px) {
         margin: 2rem 0;
       }
